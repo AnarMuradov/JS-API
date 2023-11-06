@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        div{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <script>
+        fetch("https://northwind.vercel.app/api/categories")
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(element => {
+                console.log(element);
+                cratecard(element.id,element.description,element.name)
+                
+            });
+
+        });
+
+        function cratecard(id,description,name){
+            const card = document.createElement("div")
+            const id1 =document.createElement("a")
+            const description1 =document.createElement("a")
+            const name1 =document.createElement("a")
+
+            card.style.border="1px solid black"
+            card.style.margin="5px"
+            card.style.width="200px"
+            card.style.height="100px"
+            // card.style.display="flex"
+            // card.style.flexDirection="column"
+            id1.textContent=id
+            id1.href="./index2.html"+ "#"
+            
+            description1.textContent=description
+            description1.href="./index2.html#"+ id
+            name1.textContent=name
+            name1.href="./index2.html#"+ "#" + id
+
+            card.append(id1,description1,name1)
+            document.body.appendChild(card)
+        }
+
+        // .catch(err=>console.log(("errorum",err.message));)
+    </script>
+</body>
+</html>
